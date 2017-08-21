@@ -148,7 +148,7 @@
 					<!-- pomDependencies>consider</pomDependencies -->
 					<target>
 						<artifact>
-							<groupId>org.openlca</groupId>
+							<groupId>org.openlca.releng</groupId>
 							<artifactId>olca-target-runtime</artifactId>
 							<version>0.0.1-SNAPSHOT</version>
 						</artifact>
@@ -256,15 +256,15 @@
 	<distributionManagement>
 		<snapshotRepository>
 			<id>olca-repo</id>
-			<name>OpenLCA Nexus at OpenShift</name>
-			<url>http://nexus-olca.a3c1.starter-us-west-1.openshiftapps.com/nexus/content/repositories/snapshots/</url>
+			<name>OpenLCA Nexus at AWS</name>
+			<url>http://ec2-54-90-248-145.compute-1.amazonaws.com:8081/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<repositories>
 		<repository>
 			<id>olca-repo</id>
-			<name>OpenLCA Nexus at OpenShift</name>
-			<url>http://nexus-olca.a3c1.starter-us-west-1.openshiftapps.com/nexus/content/repositories/snapshots/</url>
+			<name>OpenLCA Nexus at AWS</name>
+			<url>http://ec2-54-90-248-145.compute-1.amazonaws.com:8081/nexus/content/repositories/snapshots/</url>
 		</repository>
 	</repositories>
 </project>
