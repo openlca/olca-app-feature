@@ -463,7 +463,7 @@
          </property>
          <property
                name="aboutImage"
-               value="icons/about.png">
+               value="/olca-product/icons/about.png">
          </property>
          <property
                name="appName"

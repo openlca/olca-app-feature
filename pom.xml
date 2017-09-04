@@ -12,7 +12,8 @@
 		<tycho-version>1.0.0</tycho-version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<olca.core.version>1.7.0-SNAPSHOT</olca.core.version>
+		<olca-modules.version>1.7.0-SNAPSHOT</olca-modules.version>
+		<olca-updates.version>1.7.0-SNAPSHOT</olca-updates.version>
 	</properties>
 
 	<licenses>
@@ -34,90 +35,7 @@
 		<url>https://travis-ci.org/GreenDelta/olca-modules</url>
 	</ciManagement>
 
-	<dependencies>
-		<!-- These artifacts are not mentioned in target platform definition,
-		but the feature depends on them, so Tycho will get them from Maven -->
-		<!-- OLCA core bundles -->
-		<dependency>
-			<groupId>org.openlca</groupId>
-			<artifactId>org.openlca.olca-formula</artifactId>
-			<version>${olca.core.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.openlca</groupId>
-			<artifactId>org.openlca.olca-core</artifactId>
-			<version>${olca.core.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.openlca</groupId>
-			<artifactId>org.openlca.olca-ilcd</artifactId>
-			<version>${olca.core.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.openlca</groupId>
-			<artifactId>org.opnelca.olca-jsonld</artifactId>
-			<version>${olca.core.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.openlca</groupId>
-			<artifactId>org.openlca.ecospold</artifactId>
-			<version>${olca.core.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.openlca</groupId>
-			<artifactId>org.openlca.olca-ecospold-2</artifactId>
-			<version>${olca.core.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.openlca</groupId>
-			<artifactId>org.openlca.olca-cloud</artifactId>
-			<version>${olca.core.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.openlca</groupId>
-			<artifactId>org.openlca.olca-geo</artifactId>
-			<version>${olca.core.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- OLCA core feature -->
-		<dependency>
-			<groupId>org.openlca</groupId>
-			<artifactId>org.openlca.feature.core</artifactId>
-			<version>${olca.core.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.openlca</groupId>
-			<artifactId>org.openlca.feature.core</artifactId>
-			<version>${olca.core.version}</version>
-			<scope>provided</scope>
-			<classifier>p2metadata</classifier>
-			<type>xml</type>
-		</dependency>
-		<dependency>
-			<groupId>org.openlca</groupId>
-			<artifactId>org.openlca.feature.core</artifactId>
-			<version>${olca.core.version}</version>
-			<scope>provided</scope>
-			<classifier>p2artifacts</classifier>
-			<type>xml</type>
-		</dependency>
-	</dependencies>
-	
-	<modules>
-		<module>olca-app</module>
-		<module>org.openlca.app.feature</module>
-	</modules>
-
 	<build>
-		<defaultGoal>deploy</defaultGoal>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -126,37 +44,11 @@
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-maven-plugin</artifactId>
-				<version>${tycho-version}</version>
-				<extensions>true</extensions>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-compiler-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>target-platform-configuration</artifactId>
-				<version>${tycho-version}</version>
-				<configuration>
-					<!-- pomDependencies>consider</pomDependencies -->
-					<target>
-						<artifact>
-							<groupId>org.openlca.releng</groupId>
-							<artifactId>olca-target-runtime</artifactId>
-							<version>0.0.1-SNAPSHOT</version>
-						</artifact>
-					</target>
-					<environments>
-						<environment>
-							<os>win32</os><ws>win32</ws><arch>x86</arch>
-						</environment>
-					</environments>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -201,6 +93,12 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-maven-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<extensions>true</extensions>
+				</plugin>
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-surefire-plugin</artifactId>
@@ -262,7 +160,12 @@
 										<groupId>org.codehaus.mojo</groupId>
 										<artifactId>properties-maven-plugin</artifactId>
 										<versionRange>[1.0.0,)</versionRange>
-										<goals><goal>set-system-properties</goal></goals>
+										<goals>
+											<goal>set-system-properties</goal>
+											<goal>install-node-and-yarn</goal>
+											<goal>gulp</goal>
+											<goal>copy-dependencies</goal>
+										</goals>
 									</pluginExecutionFilter>
 									<action><ignore></ignore></action>
 								</pluginExecution>
@@ -273,6 +176,287 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<file><exists>olca-app/lib</exists></file>
+			</activation>
+			<modules>
+				<module>olca-app</module>
+				<module>org.openlca.app.feature</module>
+			</modules>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>target-platform-configuration</artifactId>
+						<version>${tycho-version}</version>
+						<configuration>
+							<target>
+								<artifact>
+									<groupId>org.openlca.releng</groupId>
+									<artifactId>olca-target-runtime</artifactId>
+									<version>0.0.1-SNAPSHOT</version>
+								</artifact>
+							</target>
+							<environments>
+								<environment>
+									<os>win32</os><ws>win32</ws><arch>x86</arch>
+								</environment>
+							</environments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>app-html</id>
+			<activation>
+				<file><missing>olca-app/html</missing></file>
+			</activation>
+			<modules>
+				<module>olca-app</module>
+			</modules>
+			<build>
+				<defaultGoal>clean initialize dependecy:copy-dependencies bundle:manifest</defaultGoal>
+			</build>
+		</profile>
+		<profile>
+			<id>app-dependencies</id>
+			<activation>
+				<file><missing>olca-app/lib</missing></file>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>org.openlca</groupId>
+					<artifactId>olca-cloud</artifactId>
+					<version>${olca-modules.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openlca</groupId>
+					<artifactId>olca-formula</artifactId>
+					<version>${olca-modules.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openlca</groupId>
+					<artifactId>olca-core</artifactId>
+					<version>${olca-modules.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openlca</groupId>
+					<artifactId>olca-ecospold-1</artifactId>
+					<version>${olca-modules.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openlca</groupId>
+					<artifactId>olca-ilcd</artifactId>
+					<version>${olca-modules.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openlca</groupId>
+					<artifactId>olca-io</artifactId>
+					<version>${olca-modules.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openlca</groupId>
+					<artifactId>olca-jsonld</artifactId>
+					<version>${olca-modules.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openlca</groupId>
+					<artifactId>olca-simapro-csv</artifactId>
+					<version>${olca-modules.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openlca</groupId>
+					<artifactId>olca-geo</artifactId>
+					<version>${olca-modules.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openlca</groupId>
+					<artifactId>olca-updates</artifactId>
+					<version>${olca-updates.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.geotools</groupId>
+					<artifactId>gt-shapefile</artifactId>
+					<version>10.3</version>
+				</dependency>
+				<dependency>
+					<groupId>org.python</groupId>
+					<artifactId>jython-standalone</artifactId>
+					<version>2.7.0</version>
+				</dependency>
+				<dependency>
+					<groupId>org.zeroturnaround</groupId>
+					<artifactId>zt-zip</artifactId>
+					<version>1.8</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+					<version>1.7.2</version>
+				</dependency>
+				<dependency>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+					<version>1.7.2</version>
+				</dependency>
+				<dependency>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+					<version>1.2.17</version>
+				</dependency>
+				<dependency>
+					<groupId>com.sun.jersey</groupId>
+					<artifactId>jersey-client</artifactId>
+					<version>1.19</version>
+				</dependency>
+				<dependency>
+					<groupId>commons-io</groupId>
+					<artifactId>commons-io</artifactId>
+					<version>2.4</version>
+				</dependency>
+				<dependency>
+					<groupId>com.google.code.gson</groupId>
+					<artifactId>gson</artifactId>
+					<version>2.2.4</version>
+				</dependency>
+				<dependency>
+					<groupId>mysql</groupId>
+					<artifactId>mysql-connector-java</artifactId>
+					<version>5.1.25</version>
+				</dependency>
+				<dependency>
+					<groupId>commons-beanutils</groupId>
+					<artifactId>commons-beanutils</artifactId>
+					<version>1.8.3</version>
+				</dependency>
+				<dependency>
+					<groupId>commons-collections</groupId>
+					<artifactId>commons-collections</artifactId>
+					<version>3.2.2</version>
+				</dependency>
+				<dependency>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+					<version>1.7.2</version>
+				</dependency>
+				<dependency>
+					<groupId>org.mapdb</groupId>
+					<artifactId>mapdb</artifactId>
+					<version>2.0-beta7</version>
+				</dependency>
+				<dependency>
+					<groupId>org.geotools</groupId>
+					<artifactId>gt-swt</artifactId>
+					<version>10.3</version>
+					<exclusions>
+						<exclusion>
+							<groupId>org.geotools</groupId>
+							<artifactId>gt-epsg-hsql</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.eclipse</groupId>
+							<artifactId>core.commands</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.eclipse</groupId>
+							<artifactId>jface</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.eclipse</groupId>
+							<artifactId>ui.workbench</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.eclipse</groupId>
+							<artifactId>core.runtime</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.eclipse</groupId>
+							<artifactId>swt.gtk.linux.x86</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.eclipse</groupId>
+							<artifactId>equinox.common</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.eclipse</groupId>
+							<artifactId>swt.win32.win32.x86_64</artifactId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+			</dependencies>
+			<repositories>
+				<repository>
+					<id>osgeo</id>
+					<name>Open Source Geospatial Foundation Repository</name>
+					<url>http://download.osgeo.org/webdav/geotools/</url>
+				</repository>
+				<repository>
+					<id>olca-repo</id>
+					<name>OpenLCA Nexus at AWS</name>
+					<url>http://ec2-54-90-248-145.compute-1.amazonaws.com:8081/nexus/content/repositories/snapshots/</url>
+				</repository>
+			</repositories>
+			<build>
+				<defaultGoal>clean initialize</defaultGoal>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<version>3.0.1</version>
+						<executions>
+							<execution>
+								<id>copy-maven-dependencies</id>
+								<goals><goal>copy-dependencies</goal></goals>
+								<phase>initialize</phase>
+							</execution>
+						</executions>
+						<configuration>
+							<addParentPoms>false</addParentPoms>
+							<outputDirectory>${basedir}/olca-app/lib</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.felix</groupId>
+						<artifactId>maven-bundle-plugin</artifactId>
+						<version>3.3.0</version>
+						<executions>
+							<execution>
+								<id>bundle-manifest</id>
+								<phase>initialize</phase>
+								<goals><goal>manifest</goal></goals>
+							</execution>
+						</executions>
+						<configuration>
+							<manifestLocation>olca-app/META-INF</manifestLocation>
+							<supportedProjectTypes>
+								<supportedProjectType>pom</supportedProjectType>
+							</supportedProjectTypes>
+							<instructions>
+								<Bundle-Description>My description</Bundle-Description>
+								<Embed-Dependency>groupId=!org.python;scope=compile</Embed-Dependency>
+								<Embed-Directory>lib</Embed-Directory>
+								<Embed-Transitive>false</Embed-Transitive>
+								<Bundle-ClassPath>.,{maven-dependencies}</Bundle-ClassPath>
+								<_include>olca-app/bundle-resources/MANIFEST.MF</_include>
+								<Export-Package></Export-Package>
+								<Import-Package></Import-Package>
+								<!-- Bundle-Activator>org.openlca.app.rcp.RcpActivator</Bundle-Activator -->
+							</instructions>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 	<distributionManagement>
 		<snapshotRepository>
 			<id>olca-repo</id>
@@ -280,11 +464,4 @@
 			<url>http://ec2-54-90-248-145.compute-1.amazonaws.com:8081/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
-	<repositories>
-		<repository>
-			<id>olca-repo</id>
-			<name>OpenLCA Nexus at AWS</name>
-			<url>http://ec2-54-90-248-145.compute-1.amazonaws.com:8081/nexus/content/repositories/snapshots/</url>
-		</repository>
-	</repositories>
 </project>

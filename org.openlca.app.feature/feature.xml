@@ -17,7 +17,6 @@
    </license>
 
    <requires>
-      <import feature="org.openlca.feature.core" version="1.7.0"/>
       <import feature="org.eclipse.nebula.widgets.tablecombo.feature" version="1.0.0.201706221838"/>
       <import feature="org.eclipse.mylyn.commons" version="3.21.0.v20160707-1856"/>
    </requires>
@@ -27,13 +26,6 @@
          download-size="0"
          install-size="0"
          version="0.0.0"/>
-
-   <plugin
-         id="org.openlca.olca-updates"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 
    <plugin
          id="org.apache.commons.lang"

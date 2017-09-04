@@ -10,5 +10,13 @@
 	<artifactId>org.openlca.feature.app</artifactId>
 	<name>OpenLCA :: RCP app feature</name>
 	<description>Core functionality of OpenLCA</description>
-	<packaging>eclipse-feature</packaging>	
+	<packaging>eclipse-feature</packaging>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 </project>
