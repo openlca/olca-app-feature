@@ -1,0 +1,12 @@
+# compiled files and libraries
+bin
+/target
+/html
+/lib
+
+# IDE settings
+/.idea
+*.iml
+
+/.classpath
+*.*~

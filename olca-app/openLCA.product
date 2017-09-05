@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="openLCA" uid="openLCA" id="olca-app.openLCA" application="org.openlca.app.Application" version="1.7.0" useFeatures="false" includeLaunchers="true">
+<product name="openLCA" uid="openLCA" id="org.openlca.olca-app.lcaproduct" application="org.openlca.app.Application" version="1.7.0" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/olca-app/icons/about.png"/>
@@ -62,7 +62,6 @@ project and other open source software.
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
       <plugin id="javax.xml"/>
-      <plugin id="olca-app"/>
       <plugin id="org.apache.batik.css"/>
       <plugin id="org.apache.batik.util"/>
       <plugin id="org.apache.batik.util.gui"/>
@@ -167,6 +166,7 @@ project and other open source software.
       <plugin id="org.eclipse.ui.views"/>
       <plugin id="org.eclipse.ui.workbench"/>
       <plugin id="org.eclipse.ui.workbench.texteditor"/>
+      <plugin id="org.openlca.olca-app"/>
       <plugin id="org.sat4j.core"/>
       <plugin id="org.sat4j.pb"/>
       <plugin id="org.w3c.css.sac"/>
@@ -176,7 +176,6 @@ project and other open source software.
    </plugins>
 
    <configurations>
-      <plugin id="olca-app" autoStart="false" startLevel="5" />
       <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="4" />
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="2" />
