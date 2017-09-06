@@ -353,6 +353,7 @@
 							<outputDirectory>${basedir}/olca-app/lib</outputDirectory>
 							<overWriteReleases>false</overWriteReleases>
 							<overWriteSnapshots>true</overWriteSnapshots>
+							<useBaseVersion>false</useBaseVersion>
 						</configuration>
 					</plugin>
 					<plugin>

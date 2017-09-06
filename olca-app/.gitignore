@@ -10,3 +10,4 @@ bin
 
 /.classpath
 *.*~
+/META-INF/MANIFEST.MF
