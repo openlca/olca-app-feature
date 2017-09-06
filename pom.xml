@@ -45,15 +45,6 @@
 					<extensions>true</extensions>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-deploy-plugin</artifactId>
-					<version>2.8.2</version>
-					<configuration>
-						<!-- we don't want to deploy artifacts before all modules compiles -->
-						<deployAtEnd>true</deployAtEnd>
-					</configuration>
-				</plugin>
-				<plugin>
 					<!-- run mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=2.5.0-SNAPSHOT -->
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-versions-plugin</artifactId>
@@ -77,6 +68,12 @@
 							</environment>
 							<environment>
 								<os>win32</os><ws>win32</ws><arch>x86_64</arch>
+							</environment>
+							<environment>
+								<os>linux</os><ws>gtk</ws><arch>x86_64</arch>
+							</environment>
+							<environment>
+								<os>macosx</os><ws>cocoa</ws><arch>x86_64</arch>
 							</environment>
 						</environments>
 					</configuration>
@@ -152,6 +149,15 @@
 						<version>${tycho-version}</version>
 						<configuration>
 							<includeAllDependencies>false</includeAllDependencies>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-deploy-plugin</artifactId>
+						<version>2.8.2</version>
+						<configuration>
+							<!-- we don't want to deploy artifacts before all modules compiles -->
+							<deployAtEnd>true</deployAtEnd>
 						</configuration>
 					</plugin>
 				</plugins>
