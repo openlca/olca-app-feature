@@ -2,3 +2,4 @@
 .project
 /target
 /olca-app/META-INF/MANIFEST.MF
+yarn.lock

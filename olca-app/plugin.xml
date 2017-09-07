@@ -368,6 +368,7 @@
          </run>
       </application>
    </extension>
+<!--
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
@@ -376,6 +377,7 @@
             id="perspectives.standard">
       </perspective>
    </extension>
+-->
    <extension
          point="org.eclipse.ui.views">
       <view
@@ -452,11 +454,15 @@
          </menuContribution>
    </extension>
    <extension
-         id="lcaproduct"
+         id="openLCA"
          point="org.eclipse.core.runtime.products">
       <product
             application="org.openlca.app.Application"
             name="openLCA">
+         <property
+               name="windowImages"
+               value="icons/logo/16_32bit.png,icons/logo/32_32bit.png,icons/logo/48_32bit.png,icons/logo/64.png,icons/logo/128.png">
+         </property>
          <property
                name="aboutText"
                value="openLCA 1.7.0">
@@ -475,10 +481,6 @@
          <property
                name="introBrandingImageText"
                value="openLCA" />
-         <property
-               name="windowImages"
-               value="/olca-product/icons/logo/16_32bit.png,/olca-product/icons/logo/32_32bit.png,/olca-product/icons/logo/48_32bit.png,/olca-product/icons/logo/64.png,/olca-product/icons/logo/128.png">
-         </property>
       </product>
    </extension>
    <extension
