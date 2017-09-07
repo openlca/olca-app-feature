@@ -124,7 +124,7 @@
 		<profile>
 			<id>default</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 				<file><exists>olca-app/META-INF/MANIFEST.MF</exists></file>
 			</activation>
 			<build>
