@@ -368,7 +368,7 @@
          </run>
       </application>
    </extension>
-<!--
+<!-- PERSPECTIVE -->
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
@@ -377,7 +377,7 @@
             id="perspectives.standard">
       </perspective>
    </extension>
--->
+
    <extension
          point="org.eclipse.ui.views">
       <view
@@ -791,4 +791,26 @@
       </wizard>
    </extension>
 
+   <extension
+         point="org.eclipse.ui.activities">
+     <activity id="remove.eclipse.ui" name="HiddenEclipseActivities">
+     </activity>
+     <activityPatternBinding 
+       activityId="remove.eclipse.ui" 
+       isEqualityPattern="false"
+       pattern="org.eclipse.*/.*">
+     </activityPatternBinding>
+     <activityPatternBinding 
+       activityId="remove.eclipse.ui" 
+       isEqualityPattern="false"
+       pattern="org.eclipse.search.*">
+     </activityPatternBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+     <perspectiveExtension 
+        targetID="perspectives.standard">
+       <hiddenMenuItem id="org.eclipse.ui.run" />
+  </perspectiveExtension>
+   </extension>
 </plugin>
